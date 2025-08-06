@@ -50,8 +50,8 @@ Assurez-vous d’avoir Docker installé, puis :
 **Cloner le dépôt**
 
 ```bash
-  git clone https://github.com/ton-utilisateur/ton-projet.git
-  cd ton-projet
+  git clone https://github.com/messaoudRm/movieapp-api.git
+  cd movieapp-api
 ```
 
 **Lancer l’application avec Docker Compose**
