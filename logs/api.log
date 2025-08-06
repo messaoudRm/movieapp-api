@@ -1,0 +1,73 @@
+2025-08-04T17:45:02.704+02:00  INFO 30420 --- [MovieApp] [main] mess.tech.movieapp.MovieAppApplication   : Starting MovieAppApplication using Java 17.0.0.1 with PID 30420 (C:\Users\messa\Desktop\perso\utils\movieapp\movieapp\target\classes started by messa in C:\Users\messa\Desktop\perso\utils\movieapp\movieapp)
+2025-08-04T17:45:02.710+02:00  INFO 30420 --- [MovieApp] [main] mess.tech.movieapp.MovieAppApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-08-04T17:45:04.575+02:00  INFO 30420 --- [MovieApp] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-04T17:45:04.704+02:00  INFO 30420 --- [MovieApp] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 119 ms. Found 5 JPA repository interfaces.
+2025-08-04T17:45:05.998+02:00  INFO 30420 --- [MovieApp] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-04T17:45:06.027+02:00  INFO 30420 --- [MovieApp] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-04T17:45:06.028+02:00  INFO 30420 --- [MovieApp] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2025-08-04T17:45:06.183+02:00  INFO 30420 --- [MovieApp] [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-08-04T17:45:06.183+02:00  INFO 30420 --- [MovieApp] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3337 ms
+2025-08-04T17:45:06.423+02:00  INFO 30420 --- [MovieApp] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-04T17:45:06.770+02:00  INFO 30420 --- [MovieApp] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.mariadb.jdbc.Connection@ce12fbb
+2025-08-04T17:45:06.773+02:00  INFO 30420 --- [MovieApp] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-04T17:45:06.864+02:00  INFO 30420 --- [MovieApp] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-04T17:45:06.994+02:00  INFO 30420 --- [MovieApp] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-08-04T17:45:07.071+02:00  INFO 30420 --- [MovieApp] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-04T17:45:07.734+02:00  INFO 30420 --- [MovieApp] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-04T17:45:09.374+02:00  INFO 30420 --- [MovieApp] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-04T17:45:09.382+02:00  INFO 30420 --- [MovieApp] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-04T17:45:10.214+02:00  WARN 30420 --- [MovieApp] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-04T17:45:10.286+02:00  INFO 30420 --- [MovieApp] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userService
+2025-08-04T17:45:11.544+02:00  INFO 30420 --- [MovieApp] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
+2025-08-04T17:45:11.566+02:00  INFO 30420 --- [MovieApp] [main] mess.tech.movieapp.MovieAppApplication   : Started MovieAppApplication in 9.795 seconds (process running for 10.611)
+2025-08-04T17:45:24.602+02:00  INFO 30420 --- [MovieApp] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-04T17:45:24.602+02:00  INFO 30420 --- [MovieApp] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-08-04T17:45:24.605+02:00  INFO 30420 --- [MovieApp] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-08-04T17:45:25.548+02:00  INFO 30420 --- [MovieApp] [http-nio-8080-exec-4] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 508 ms
+2025-08-04T17:49:00.385+02:00  INFO 30420 --- [MovieApp] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-04T17:49:00.390+02:00  INFO 30420 --- [MovieApp] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-04T17:49:00.454+02:00  INFO 30420 --- [MovieApp] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-08-04T17:57:09.231+02:00  INFO 13304 --- [MovieApp] [main] mess.tech.movieapp.MovieAppApplication   : Starting MovieAppApplication using Java 17.0.0.1 with PID 13304 (C:\Users\messa\Desktop\perso\utils\movieapp\movieapp\target\classes started by messa in C:\Users\messa\Desktop\perso\utils\movieapp\movieapp)
+2025-08-04T17:57:09.238+02:00  INFO 13304 --- [MovieApp] [main] mess.tech.movieapp.MovieAppApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-08-04T17:57:11.380+02:00  INFO 13304 --- [MovieApp] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-04T17:57:11.520+02:00  INFO 13304 --- [MovieApp] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 126 ms. Found 5 JPA repository interfaces.
+2025-08-04T17:57:12.827+02:00  INFO 13304 --- [MovieApp] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-04T17:57:12.847+02:00  INFO 13304 --- [MovieApp] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-04T17:57:12.848+02:00  INFO 13304 --- [MovieApp] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2025-08-04T17:57:12.990+02:00  INFO 13304 --- [MovieApp] [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-08-04T17:57:12.991+02:00  INFO 13304 --- [MovieApp] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3604 ms
+2025-08-04T17:57:13.207+02:00  INFO 13304 --- [MovieApp] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-04T17:57:13.442+02:00  INFO 13304 --- [MovieApp] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.mariadb.jdbc.Connection@4f820f42
+2025-08-04T17:57:13.447+02:00  INFO 13304 --- [MovieApp] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-04T17:57:13.534+02:00  INFO 13304 --- [MovieApp] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-04T17:57:13.678+02:00  INFO 13304 --- [MovieApp] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-08-04T17:57:13.759+02:00  INFO 13304 --- [MovieApp] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-04T17:57:14.346+02:00  INFO 13304 --- [MovieApp] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-04T17:57:15.951+02:00  INFO 13304 --- [MovieApp] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-04T17:57:15.954+02:00  INFO 13304 --- [MovieApp] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-04T17:57:16.652+02:00  WARN 13304 --- [MovieApp] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-04T17:57:16.713+02:00  INFO 13304 --- [MovieApp] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userService
+2025-08-04T17:57:17.901+02:00  INFO 13304 --- [MovieApp] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
+2025-08-04T17:57:17.920+02:00  INFO 13304 --- [MovieApp] [main] mess.tech.movieapp.MovieAppApplication   : Started MovieAppApplication in 9.668 seconds (process running for 11.398)
+2025-08-04T17:57:22.337+02:00  INFO 13304 --- [MovieApp] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-04T17:57:22.341+02:00  INFO 13304 --- [MovieApp] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-04T17:57:22.360+02:00  INFO 13304 --- [MovieApp] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-08-04T17:58:45.552+02:00  INFO 14924 --- [MovieApp] [main] m.t.movieapp.MovieAppApplicationTests    : Starting MovieAppApplicationTests using Java 17.0.0.1 with PID 14924 (started by messa in C:\Users\messa\Desktop\perso\utils\movieapp\movieapp)
+2025-08-04T17:58:45.556+02:00  INFO 14924 --- [MovieApp] [main] m.t.movieapp.MovieAppApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-08-04T17:58:47.507+02:00  INFO 14924 --- [MovieApp] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-04T17:58:47.660+02:00  INFO 14924 --- [MovieApp] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 134 ms. Found 5 JPA repository interfaces.
+2025-08-04T17:58:48.691+02:00  INFO 14924 --- [MovieApp] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-04T17:58:48.960+02:00  INFO 14924 --- [MovieApp] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.mariadb.jdbc.Connection@5b2b8d86
+2025-08-04T17:58:48.965+02:00  INFO 14924 --- [MovieApp] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-04T17:58:49.056+02:00  INFO 14924 --- [MovieApp] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-04T17:58:49.206+02:00  INFO 14924 --- [MovieApp] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-08-04T17:58:49.331+02:00  INFO 14924 --- [MovieApp] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-04T17:58:50.133+02:00  INFO 14924 --- [MovieApp] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-04T17:58:51.830+02:00  INFO 14924 --- [MovieApp] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-04T17:58:51.834+02:00  INFO 14924 --- [MovieApp] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-04T17:58:52.607+02:00  WARN 14924 --- [MovieApp] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-04T17:58:52.676+02:00  INFO 14924 --- [MovieApp] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userService
+2025-08-04T17:58:54.233+02:00  INFO 14924 --- [MovieApp] [main] m.t.movieapp.MovieAppApplicationTests    : Started MovieAppApplicationTests in 9.228 seconds (process running for 11.023)
+2025-08-04T17:58:55.217+02:00  INFO 14924 --- [MovieApp] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-08-04T17:58:55.221+02:00  INFO 14924 --- [MovieApp] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-08-04T17:58:55.245+02:00  INFO 14924 --- [MovieApp] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
