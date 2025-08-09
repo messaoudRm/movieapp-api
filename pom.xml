@@ -74,14 +74,6 @@
 	</dependencies>
 
 	<build>
-		<!-- Désactive le filtering Maven pour éviter les problèmes d'encodage sur application.properties -->
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>false</filtering>
-			</resource>
-		</resources>
-
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

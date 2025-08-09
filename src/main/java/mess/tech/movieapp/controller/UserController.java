@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import mess.tech.movieapp.entites.User;
-import java.util.List;
 
 @RestController
 @RequestMapping("/users")
