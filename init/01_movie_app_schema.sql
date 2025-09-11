@@ -1,4 +1,4 @@
--- Créer la base de données si elle n'existe pas
+-- Créer la base de données
 CREATE DATABASE IF NOT EXISTS DB;
 USE DB;
 

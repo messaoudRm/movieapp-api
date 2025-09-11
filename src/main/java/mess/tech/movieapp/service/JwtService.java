@@ -4,14 +4,12 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import mess.tech.movieapp.entites.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import java.security.Key;
-import java.util.Base64;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
 @Service
@@ -23,15 +21,17 @@ public class JwtService {
     @Value("${jwt.expirationTime}")
     private int expirationTime;
 
-    public String generateToken(UserDetails userDetails) {
-        Map<String, Object> claims = new HashMap<>();
-        return createToken(claims, userDetails);
+    public String generateToken(User user) {
+        Map<String, Object> claims = new LinkedHashMap<>();
+        claims.put("id", user.getId());
+        claims.put("role", user.getRole().name());
+        return createToken(claims, user);
     }
 
-    private String createToken(Map<String, Object> claims, UserDetails userDetails) {
+    private String createToken(Map<String, Object> claims, User user) {
         return Jwts.builder()
                 .setClaims(claims)
-                .setSubject(userDetails.getUsername())
+                .setSubject(user.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + expirationTime))
                 .signWith(jwtSigningKey(), SignatureAlgorithm.HS256)

@@ -53,8 +53,10 @@ public class AuthController {
             if (authentication.isAuthenticated()){
 
                 UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+                user = userRepository.findByUsername(userDetails.getUsername());
+
                 Map<String, Object> authData = new HashMap<>();
-                authData.put("token", jwtService.generateToken(userDetails));
+                authData.put("token", jwtService.generateToken(user));
                 authData.put("type", "Bearer");
                 return ResponseEntity.status(HttpStatus.OK).body(authData);
             }

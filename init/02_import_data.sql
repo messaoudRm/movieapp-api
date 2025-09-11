@@ -1,4 +1,4 @@
--- Sélectionner la base de données (assure-toi qu'elle correspond bien à celle de ton fichier 01_movie_app_schema.sql)
+-- Sélectionner la base de données
 USE DB;
 
 -- Charger les données depuis le fichier CSV dans la table `movies`
