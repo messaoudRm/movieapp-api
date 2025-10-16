@@ -1,6 +1,32 @@
-version: "3.9"
 
 services:
+  prometheus:
+    image: prom/prometheus:v2.44.0
+    container_name: movieapp-prometheus
+    ports:
+      - "9090:9090"
+    depends_on:
+      - app
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+
+  grafana:
+    image: grafana/grafana:9.5.2
+    container_name: movieapp-grafana
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    depends_on:
+      - prometheus
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - ./monitoring/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./monitoring/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - grafana-data:/var/lib/grafana
+
   db:
     image: mariadb:11.8.2
     container_name: movieapp-db
@@ -13,7 +39,7 @@ services:
       - "3308:3306"
     volumes:
       - ./init:/docker-entrypoint-initdb.d
-      - movieapp-db-data:/var/lib/mysql
+      - maria-db-data:/var/lib/mysql
 
   adminer:
     image: adminer
@@ -36,4 +62,6 @@ services:
       - db
 
 volumes:
-  movieapp-db-data:
+  maria-db-data:
+  prometheus-data:
+  grafana-data:

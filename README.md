@@ -14,6 +14,8 @@ Cette application utilise un jeu de données de **plus de 9000 films**, disponib
 - ✅ Adminer pour interface DB (accessible en local) : [doc-Adminer](docs/ADMINER.md) 
 - ✅ Documentation interactive avec Swagger / OpenAPI : [doc-Swagger](docs/SWAGGER.md)
 - ✅ Logger Spring Boot Logback
+- ✅ Monitoring complet avec Prometheus & Grafana : collecte et visualisation des métriques d’application (requêtes HTTP, performances, erreurs, ...) : [doc-Monitoring](docs/MONITORING.md)
+- ✅ Pipeline de tests automatisés basé sur une collection Postman, permettant d’exécuter les endpoints et de valider les réponses de l’API : [doc-Postman](docs/POSTMAN.md)
 
 ---
 
@@ -28,6 +30,9 @@ Cette application utilise un jeu de données de **plus de 9000 films**, disponib
 - **Swagger (OpenAPI 3)**
 - **Maven**
 - **Docker & Docker Compose**
+- **Prometheus**
+- **Grafana**
+- **Postman**
 - **Logback**
 
 ---
@@ -81,11 +86,11 @@ docker-compose up --build
 
 - Supprimer les images Docker utilisées :
   ```bash
-  docker rmi movieapp-api-app mariadb:11.8.2 adminer
+  docker rmi movieapp-api-app mariadb:11.8.2 adminer prom/prometheus:v2.44.0 grafana/grafana:9.5.2
   ```
 
 - Supprimer le volume de la base de données :
   ```bash
-  docker volume rm movieapp-api_movieapp-db-data
+  docker volume rm movieapp-api_maria-db-data movieapp-api_prometheus-data movieapp-api_grafana-data
   ```
 
