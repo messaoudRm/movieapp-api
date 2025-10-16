@@ -7,7 +7,7 @@ Cette application utilise un jeu de données de **plus de 9000 films**, disponib
 
 ## ✅ Fonctionnalités
 
-- ✅ API REST CRUD pour les films avec pagination : [doc-Architecture](docs/ARCHITECTURE.md)
+- ✅ API REST CRUD pour les films avec pagination
 - ✅ Sécurité avec JWT
 - ✅ Base de données MariaDB : [doc-Schéma](docs/DATABASE_SCHEMA.md)
 - ✅ Les mots de passe sont hachés à l’aide de l’algorithme BCrypt
@@ -16,8 +16,6 @@ Cette application utilise un jeu de données de **plus de 9000 films**, disponib
 - ✅ Logger Spring Boot Logback
 - ✅ Monitoring complet avec Prometheus & Grafana : collecte et visualisation des métriques d’application (requêtes HTTP, performances, erreurs, ...) : [doc-Monitoring](docs/MONITORING.md)
 - ✅ Pipeline de tests automatisés basé sur une collection Postman, permettant d’exécuter les endpoints et de valider les réponses de l’API : [doc-Postman](docs/POSTMAN.md)
-
----
 
 ## 🧱 Tech Stack
 
@@ -67,29 +65,29 @@ docker-compose up --build
 
 ## 🛑 Arrêter et relancer l'application
 
-- Arrêter l'application :
+Arrêter l'application :
   ```bash
   Ctrl + C
   ```
 
-- Relancer les conteneurs déjà créés :
+Relancer les conteneurs déjà créés :
   ```bash
   docker-compose start
   ```
 
 ## 🧹 Nettoyer les conteneurs, images et volumes
 
-- Arrêter et supprimer uniquement les conteneurs :
+Arrêter et supprimer uniquement les conteneurs :
   ```bash
   docker-compose down
   ```
 
-- Supprimer les images Docker utilisées :
+Supprimer les images Docker utilisées :
   ```bash
   docker rmi movieapp-api-app mariadb:11.8.2 adminer prom/prometheus:v2.44.0 grafana/grafana:9.5.2
   ```
 
-- Supprimer le volume de la base de données :
+Supprimer le volume de la base de données :
   ```bash
   docker volume rm movieapp-api_maria-db-data movieapp-api_prometheus-data movieapp-api_grafana-data
   ```
