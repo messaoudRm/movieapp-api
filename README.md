@@ -5,7 +5,7 @@ Cette application utilise un jeu de données de **plus de 9000 films**, disponib
 
 ---
 
-## ✅ Fonctionnalités
+## Fonctionnalités
 
 - ✅ API REST CRUD pour les films avec pagination : [doc-Architecture](docs/ARCHITECTURE.md)
 - ✅ Sécurité avec JWT
@@ -14,10 +14,56 @@ Cette application utilise un jeu de données de **plus de 9000 films**, disponib
 - ✅ Adminer pour interface DB (accessible en local) : [doc-Adminer](docs/ADMINER.md) 
 - ✅ Documentation interactive avec Swagger / OpenAPI : [doc-Swagger](docs/SWAGGER.md)
 - ✅ Logger Spring Boot Logback
+- ✅ Monitoring complet avec Prometheus & Grafana : collecte et visualisation des métriques d’application (requêtes HTTP, performances, erreurs, ...) : [doc-Monitoring](docs/MONITORING.md)
+- ✅ Pipeline de tests automatisés basé sur une collection Postman, permettant d’exécuter les endpoints et de valider les réponses de l’API : [doc-Postman](docs/POSTMAN.md)
+- ✅ Analyse de sentiment automatisée sur les commentaires, via un microservice FastAPI : [doc-Sentiment-Analyzer]([doc Sentiment-Analyzer](https://github.com/messaoudRm/sentiment-analyzer/blob/main/README.md))
 
----
+## Architecture :
 
-## 🧱 Tech Stack
+```mermaid
+flowchart TB
+%% ==== SECTION CLIENT ====
+    subgraph Client["Client"]
+        client["Navigateur, OpenAPI (Swagger)"]
+    end
+
+%% ==== SECTION BACKEND ====
+    subgraph Backend["Backend Services"]
+        direction TB
+
+    %% --- Application principale ---
+        subgraph SpringBootApp["Spring Boot App (container)"]
+            direction TB
+
+            subgraph SecurityFilter["jwtFilter"]
+                jwtFilter["JwtAuthenticationFilter"]
+            end
+
+            subgraph ControllerLayer["Controller"]
+                controller["@RestController"]
+            end
+
+            subgraph ServiceLayer["Service"]
+                service["@Service"]
+            end
+        end
+
+    %% --- Base de données et outils ---
+        db["MariaDB (container)"]
+
+    end
+
+
+%% ==== FLUX PRINCIPAL ====
+    client -->|"Requête HTTP avec Authorization: Bearer <token_jwt>"| jwtFilter
+    jwtFilter -->|"Token valide"| controller
+    jwtFilter -.->|"Token invalide (401)"| client
+
+    controller --> service
+    service <-->|"JDBC / JPA"| db
+```
+
+## Tech Stack
 
 - **Java 17**
 - **Spring Boot**
@@ -33,7 +79,7 @@ Cette application utilise un jeu de données de **plus de 9000 films**, disponib
 ---
 
 
-## 🏗️ Build Docker optimisé avec Multi-stage Build
+## Build Docker optimisé avec Multi-stage Build
 
 Le build Docker utilise un **multi-stage build** basé sur `openjdk:17-jdk-alpine` pour optimiser la taille de l’image finale :
 
@@ -43,7 +89,7 @@ Le build Docker utilise un **multi-stage build** basé sur `openjdk:17-jdk-alpin
 Cela permet d’avoir une image finale plus légère, sans les fichiers sources ni les dépendances Maven.
 
 ---
-## 🚀 Lancement rapide
+## Lancement rapide
 
 Assurez-vous d’avoir Docker installé, puis :
 
@@ -60,7 +106,7 @@ Assurez-vous d’avoir Docker installé, puis :
 docker-compose up --build
 ```
 
-## 🛑 Arrêter et relancer l'application
+## Arrêter et relancer l'application
 
 - Arrêter l'application :
   ```bash
@@ -72,7 +118,7 @@ docker-compose up --build
   docker-compose start
   ```
 
-## 🧹 Nettoyer les conteneurs, images et volumes
+## Nettoyer les conteneurs, images et volumes
 
 - Arrêter et supprimer uniquement les conteneurs :
   ```bash

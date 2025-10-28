@@ -21,17 +21,25 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final UserRepository userRepository;
     private final MovieRepository movieRepository;
+    private final SentimentAnalyzeService sentimentAnalyzeService;
 
     public CommentService(CommentRepository commentRepository,
                           UserRepository userRepository,
-                          MovieRepository movieRepository) {
+                          MovieRepository movieRepository,
+                          SentimentAnalyzeService sentimentAnalyzeService) {
         this.commentRepository = commentRepository;
         this.userRepository = userRepository;
         this.movieRepository = movieRepository;
+        this.sentimentAnalyzeService = sentimentAnalyzeService;
     }
 
     public void addComment(Comment comment) {
+        commentEntities(comment);
+        commentWithSentiment(comment);
+        commentRepository.save(comment);
+    }
 
+    private void commentEntities(Comment comment) {
         Long userId = comment.getUser().getId();
         Long movieId = comment.getMovie().getId();
 
@@ -43,8 +51,12 @@ public class CommentService {
 
         comment.setUser(user);
         comment.setMovie(movie);
+    }
 
-        commentRepository.save(comment);
+    private void commentWithSentiment(Comment comment) {
+        var sentiment = sentimentAnalyzeService.analyzeSentiment(comment.getContent());
+        comment.setSentimentLabel(sentiment.label());
+        comment.setSentimentScore(sentiment.score());
     }
 
     public void removeCommentById(Long id) {
@@ -84,7 +96,9 @@ public class CommentService {
                         c.getMovie().getId(),
                         c.getMovie().getTitle(),
                         c.getContent(),
-                        c.getCreatedAt()
+                        c.getCreatedAt(),
+                        c.getSentimentLabel(),
+                        c.getSentimentScore()
                 ))
                 .toList();
     }
@@ -96,7 +110,9 @@ public class CommentService {
                         c.getUser().getId(),
                         c.getUser().getUsername(),
                         c.getContent(),
-                        c.getCreatedAt()
+                        c.getCreatedAt(),
+                        c.getSentimentLabel(),
+                        c.getSentimentScore()
                 ))
                 .toList();
     }
