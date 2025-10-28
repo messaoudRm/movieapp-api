@@ -7,5 +7,7 @@ public record UserCommentDTO(
         Long movieId,
         String movieTitle,
         String content,
-        LocalDateTime createdAt
+        LocalDateTime createdAt,
+        String sentimentLabel,
+        Double sentimentScore
 ) {}

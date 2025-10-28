@@ -28,6 +28,12 @@ public class Comment {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @Column(name = "sentiment_label")
+    private String sentimentLabel;
+
+    @Column(name = "sentiment_score")
+    private Double sentimentScore;
+
     public Comment() {}
 
     public Comment(User user, Movie movie, String content) {
@@ -68,6 +74,14 @@ public class Comment {
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
+
+    public String getSentimentLabel() { return sentimentLabel; }
+
+    public void setSentimentLabel(String sentimentLabel) { this.sentimentLabel = sentimentLabel; }
+
+    public Double getSentimentScore() { return sentimentScore; }
+
+    public void setSentimentScore(Double sentimentScore) { this.sentimentScore = sentimentScore; }
 
     @PrePersist
     protected void onCreate() {
