@@ -1,13 +1,15 @@
-package mess.tech.movieapp.dto.comments;
+package mess.tech.movieapp.dto;
 
 import java.time.LocalDateTime;
 
-public record UserCommentDTO(
+public record CommentDTO(
         Long id,
+        Long userId,
+        String username,
         Long movieId,
         String movieTitle,
         String content,
         LocalDateTime createdAt,
         String sentimentLabel,
-        Double sentimentScore
+        double sentimentScore
 ) {}

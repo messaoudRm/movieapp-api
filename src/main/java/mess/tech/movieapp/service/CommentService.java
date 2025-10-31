@@ -1,10 +1,7 @@
 package mess.tech.movieapp.service;
 
 import jakarta.persistence.EntityNotFoundException;
-import mess.tech.movieapp.dto.comments.MovieCommentDTO;
-import mess.tech.movieapp.dto.comments.MovieCommentsDTO;
-import mess.tech.movieapp.dto.comments.UserCommentDTO;
-import mess.tech.movieapp.dto.comments.UserCommentsDTO;
+import mess.tech.movieapp.dto.CommentDTO;
 import mess.tech.movieapp.entites.Comment;
 import mess.tech.movieapp.entites.Movie;
 import mess.tech.movieapp.entites.User;
@@ -63,58 +60,36 @@ public class CommentService {
         this.commentRepository.deleteById(id);
     }
 
-    public MovieCommentsDTO getCommentsByMovieId(Long movieId) {
+    public List<CommentDTO> getCommentsByMovieId(Long movieId) {
         List<Comment> comments = commentRepository.findByMovieId(movieId);
-        if (comments.isEmpty()) return null;
+        if (comments.isEmpty()) return List.of();
 
-        var movie = comments.get(0).getMovie();
-
-        return new MovieCommentsDTO(
-                movie.getId(),
-                movie.getTitle(),
-                toMovieCommentDTOList(comments)
-        );
+        return comments.stream()
+                .map(this::toCommentDTO)
+                .toList();
     }
 
-    public UserCommentsDTO getCommentsByUserId(Long userId) {
+    public List<CommentDTO> getCommentsByUserId(Long userId) {
         List<Comment> comments = commentRepository.findByUserId(userId);
-        if (comments.isEmpty()) return null;
+        if (comments.isEmpty()) return List.of();
 
-        var user = comments.get(0).getUser();
+        return comments.stream()
+                .map(this::toCommentDTO)
+                .toList();
+    }
 
-        return new UserCommentsDTO(
-                user.getId(),
-                user.getUsername(),
-                toUserCommentDTOList(comments)
+    public CommentDTO toCommentDTO(Comment comment) {
+        return new CommentDTO(
+                comment.getId(),
+                comment.getUser().getId(),
+                comment.getUser().getUsername(),
+                comment.getMovie().getId(),
+                comment.getMovie().getTitle(),
+                comment.getContent(),
+                comment.getCreatedAt(),
+                comment.getSentimentLabel(),
+                comment.getSentimentScore()
         );
-    }
-
-    private List<UserCommentDTO> toUserCommentDTOList(List<Comment> comments) {
-        return comments.stream()
-                .map(c -> new UserCommentDTO(
-                        c.getId(),
-                        c.getMovie().getId(),
-                        c.getMovie().getTitle(),
-                        c.getContent(),
-                        c.getCreatedAt(),
-                        c.getSentimentLabel(),
-                        c.getSentimentScore()
-                ))
-                .toList();
-    }
-
-    private List<MovieCommentDTO> toMovieCommentDTOList(List<Comment> comments) {
-        return comments.stream()
-                .map(c -> new MovieCommentDTO(
-                        c.getId(),
-                        c.getUser().getId(),
-                        c.getUser().getUsername(),
-                        c.getContent(),
-                        c.getCreatedAt(),
-                        c.getSentimentLabel(),
-                        c.getSentimentScore()
-                ))
-                .toList();
     }
 
 }

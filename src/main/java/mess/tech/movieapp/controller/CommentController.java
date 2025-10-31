@@ -1,7 +1,6 @@
 package mess.tech.movieapp.controller;
 
-import mess.tech.movieapp.dto.comments.MovieCommentsDTO;
-import mess.tech.movieapp.dto.comments.UserCommentsDTO;
+import mess.tech.movieapp.dto.CommentDTO;
 import mess.tech.movieapp.entites.Comment;
 import mess.tech.movieapp.service.CommentService;
 import org.springframework.http.HttpStatus;
@@ -11,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/comments")
@@ -37,11 +38,11 @@ public class CommentController {
     @GetMapping(path = "/movie/{movieId}", produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getCommentsByMovie(@PathVariable Long movieId) {
         try {
-            MovieCommentsDTO movieComments = commentService.getCommentsByMovieId(movieId);
-            if (movieComments == null) {
+            List<CommentDTO> comments = commentService.getCommentsByMovieId(movieId);
+            if (comments.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
             }
-            return ResponseEntity.status(HttpStatus.OK).body(movieComments);
+            return ResponseEntity.status(HttpStatus.OK).body(comments);
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }catch (Exception ex) {
@@ -52,11 +53,11 @@ public class CommentController {
     @GetMapping(path = "/user/{userId}", produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getCommentsByUser(@PathVariable Long userId) {
         try {
-            UserCommentsDTO userComments = commentService.getCommentsByUserId(userId);
-            if (userComments == null) {
+            List<CommentDTO> comments = commentService.getCommentsByUserId(userId);
+            if (comments.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
             }
-            return ResponseEntity.status(HttpStatus.OK).body(userComments);
+            return ResponseEntity.status(HttpStatus.OK).body(comments);
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }catch (Exception ex) {
