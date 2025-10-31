@@ -7,6 +7,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
@@ -55,6 +58,23 @@ public class MovieController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Movie not found with id: " + id);
             }
             return ResponseEntity.status(HttpStatus.OK).body(movie);
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error");
+        }
+    }
+
+    @GetMapping(path = "/search", produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> searchMoviesByTitle(@RequestParam String title) {
+        try {
+            List<Movie> movies = movieService.searchMoviesByTitle(title);
+            if (movies == null || movies.isEmpty()) {
+                return ResponseEntity
+                        .status(HttpStatus.NO_CONTENT)
+                        .build();
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(movies);
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         } catch (Exception ex) {
