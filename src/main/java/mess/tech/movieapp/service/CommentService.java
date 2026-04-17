@@ -32,8 +32,8 @@ public class CommentService {
 
     public void addComment(Comment comment) {
         commentEntities(comment);
-        commentWithSentiment(comment);
-        commentRepository.save(comment);
+        Comment saved = commentRepository.save(comment);
+        commentWithSentiment(saved);
     }
 
     private void commentEntities(Comment comment) {
