@@ -51,9 +51,11 @@ public class CommentService {
     }
 
     private void commentWithSentiment(Comment comment) {
-        var sentiment = sentimentAnalyzeService.analyzeSentiment(comment.getContent());
-        comment.setSentimentLabel(sentiment.label());
-        comment.setSentimentScore(sentiment.score());
+        sentimentAnalyzeService.analyzeSentiment(
+                comment.getId(),
+                comment.getMovie().getId(),
+                comment.getContent()
+        );
     }
 
     public void removeCommentById(Long id) {
