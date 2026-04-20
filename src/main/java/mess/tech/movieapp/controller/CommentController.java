@@ -27,7 +27,7 @@ public class CommentController {
     public ResponseEntity<?> createComment(@RequestBody Comment comment) {
         try {
             commentService.addComment(comment);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
+            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         } catch (Exception ex) {

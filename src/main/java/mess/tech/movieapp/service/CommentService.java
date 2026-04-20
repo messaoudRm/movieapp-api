@@ -8,6 +8,7 @@ import mess.tech.movieapp.entites.User;
 import mess.tech.movieapp.repository.CommentRepository;
 import mess.tech.movieapp.repository.MovieRepository;
 import mess.tech.movieapp.repository.UserRepository;
+import mess.tech.movieapp.service.kafka.ReviewProducer;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,16 +19,16 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final UserRepository userRepository;
     private final MovieRepository movieRepository;
-    private final SentimentAnalyzeService sentimentAnalyzeService;
+    private final ReviewProducer reviewProducer;
 
     public CommentService(CommentRepository commentRepository,
                           UserRepository userRepository,
                           MovieRepository movieRepository,
-                          SentimentAnalyzeService sentimentAnalyzeService) {
+                          ReviewProducer reviewProducer) {
         this.commentRepository = commentRepository;
         this.userRepository = userRepository;
         this.movieRepository = movieRepository;
-        this.sentimentAnalyzeService = sentimentAnalyzeService;
+        this.reviewProducer = reviewProducer;
     }
 
     public void addComment(Comment comment) {
@@ -51,11 +52,7 @@ public class CommentService {
     }
 
     private void commentWithSentiment(Comment comment) {
-        sentimentAnalyzeService.analyzeSentiment(
-                comment.getId(),
-                comment.getMovie().getId(),
-                comment.getContent()
-        );
+        reviewProducer.sendReview(comment.getId(), comment.getMovie().getId(), comment.getContent());
     }
 
     public void removeCommentById(Long id) {
