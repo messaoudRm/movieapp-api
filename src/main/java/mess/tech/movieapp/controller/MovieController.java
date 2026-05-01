@@ -1,5 +1,7 @@
 package mess.tech.movieapp.controller;
 
+import mess.tech.movieapp.decorator.MovieDecorator;
+import mess.tech.movieapp.dto.MovieDetailsDTO;
 import mess.tech.movieapp.entites.Movie;
 import mess.tech.movieapp.service.MovieService;
 import org.springframework.data.domain.Page;
@@ -14,9 +16,11 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class MovieController {
 
     private final MovieService movieService;
+    private final MovieDecorator movieDecorator;
 
-    public MovieController(MovieService movieService) {
+    public MovieController(MovieService movieService, MovieDecorator movieDecorator) {
         this.movieService = movieService;
+        this.movieDecorator = movieDecorator;
     }
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
@@ -54,7 +58,10 @@ public class MovieController {
             if (movie == null) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Movie not found with id: " + id);
             }
-            return ResponseEntity.status(HttpStatus.OK).body(movie);
+
+            MovieDetailsDTO movieDecorated = movieDecorator.decorate(movie);
+
+            return ResponseEntity.status(HttpStatus.OK).body(movieDecorated);
         } catch (IllegalArgumentException ex) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         } catch (Exception ex) {
